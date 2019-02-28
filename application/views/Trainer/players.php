@@ -2,7 +2,7 @@
 	<?php for($i=0;$i<count($match);$i++):?>
 		<?php if($match[$i]['type']==1):?>
 			<div class="card-columns" >
-				<form method="POST"  action="<?= site_url('TrainerController/deletePlayer');?>" style="width: 22rem;">
+				<form method="POST" id="cardPlayer" action="<?= site_url('TrainerController/deletePlayer');?>" style="width: 22rem;">
 					<div class="card card-columns-3">
 						<img src="<?=base_url()?>/php/codeigniter/FirstTask/public/img/player.png" class="card-img-top" style="width:200px;height: 220px; margin:10px 77px;">
 						<div class="card-body">
@@ -19,3 +19,4 @@
 		<?php endif;?>
 	<?php endfor;?>
 </div>
+

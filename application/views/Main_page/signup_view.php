@@ -1,6 +1,6 @@
 <div class="container">
     <div id="insert_error" class="alert alert-danger"></div>
-    <form id="SignUpForm" method="POST" action="<?=site_url('UserDatabaseController/insert');?>" >
+    <form id="SignUpForm" method="POST" action="<?=site_url('Main_controller/insert');?>" >
         <div class="form-group" >
             <label for="FirstNameLabel">First Name</label>
             <input type="text" class="form-control" name="first_Name" id="fname" placeholder="Enter first name" class="name">

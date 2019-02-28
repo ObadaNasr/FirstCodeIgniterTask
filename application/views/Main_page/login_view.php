@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="POST" id="SignInForm" action="<?=site_url('UserDatabaseController/checkOnDB');?>">
+    <form method="POST" id="SignInForm" action="<?=site_url('Login/login');?>">
          <div class="form-group" >
                <label for="EmailLabel">Email address</label>
                <input type="text" class="form-control" id="Email" data-validation="email" name="Email" aria-describedby="emailHelp" placeholder="Enter email" margin="100">

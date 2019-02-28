@@ -1,11 +1,12 @@
 <?php
+	if(!defined('BASEPATH')) exit('Hacking Attempt. Keluar dari sistem.');
     class TrainerController extends CI_Controller{
         function __construct()
         {
             parent::__construct();
-            $data=$this->session->userdata('user_id');
             $type=$this->session->userdata('type');
-            if(!$data && $type != 2){
+            $isLogin=$this->session->userdata('isLogin');
+            if(!$isLogin && $type != 2){
                 $this->logOut();
             }
         }
@@ -14,7 +15,7 @@
             $this->load->view('Trainer/Trainer');
             $this->load->view('Trainer/include/footer_view');
         }
-        public function players(){
+        public function players($isIt=0){
 			$this->load->model('Main_model');
 			$result=$this->Main_model->get();
 			$data['match']=array();
@@ -27,7 +28,7 @@
 					'type' => $value['type']
 				);
 			}
-
+			$data['isIt']=$isIt;
 			$this->load->view('Trainer/include/header_view');
 			$this->load->view('Trainer/Players',$data);
 			$this->load->view('Trainer/include/footer_view');
@@ -58,8 +59,13 @@
 			$IDM= $this->input->post('IDMatch');
 			$IDP= $this->input->post('IDPlayer');
 			$this->load->model('Match_model');
-			$this->Match_model->insertPlayerInMatch(array('IDP' => $IDP,'IDM' => $IDM));
-			$this->players();
+			$result=$this->Match_model->getPlayerInMatch(array('IDM'=>$IDM,'IDP'=>$IDP));
+			$it=0;
+			if(!$result){
+				$this->Match_model->insertPlayerInMatch(array('IDP' => $IDP,'IDM' => $IDM));
+				$it=1;
+			}
+			$this->players($it);
 		}
 		public function createMatch(){
 			$this->load->view('Trainer/include/header_view');

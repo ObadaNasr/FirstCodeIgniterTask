@@ -5,14 +5,15 @@
      * Date: 2/19/2019
      * Time: 10:16 AM
      */
+	if(!defined('BASEPATH')) exit('Hacking Attempt. Keluar dari sistem.');
     class PlayerController extends CI_Controller
     {
         function __construct()
         {
             parent::__construct();
-            $data=$this->session->userdata('user_id');
             $type=$this->session->userdata('type');
-            if(!$data && $type!= 1){
+			$isLogin=$this->session->userdata('isLogin');
+            if(!$isLogin && $type!= 1){
                 $this->logOut();
             }
         }
